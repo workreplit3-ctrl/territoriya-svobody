@@ -645,7 +645,7 @@ function About() {
             <FadeIn delay={0.4}>
               <div className="flex items-center gap-4 text-sm text-forest font-medium tracking-wide uppercase">
                 <div className="w-12 h-[1px] bg-terracotta" />
-                С 2010 года
+                С 2025 ГОДА
               </div>
             </FadeIn>
           </div>
