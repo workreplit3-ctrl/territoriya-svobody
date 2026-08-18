@@ -81,13 +81,6 @@ const PORTFOLIO = [
   { title: 'Вечерний сад', category: 'Частный сад', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/eda517f3cf4a.jpg' },
 ];
 
-const STATS = [
-  { value: 120, suffix: '+', label: 'Реализованных проектов' },
-  { value: 15, suffix: '', label: 'Лет опыта' },
-  { value: 8, suffix: '', label: 'Наград за дизайн' },
-  { value: 100, suffix: '%', label: 'Экологичных решений' },
-];
-
 const HERO_IMG = 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/52977949b810.jpg';
 
 /* ------------------------------------------------------------------ */
@@ -757,45 +750,6 @@ function Portfolio() {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  STATS                                                              */
-/* ------------------------------------------------------------------ */
-
-function Stats() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-
-  return (
-    <section className="bg-forest py-24 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-64 h-64 border border-warm-white rounded-full" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 border border-warm-white rounded-full" />
-      </div>
-
-      <div ref={ref} className="max-w-[1400px] mx-auto px-6 md:px-10 relative z-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16">
-          {STATS.map((stat, i) => (
-            <FadeIn key={stat.label} delay={i * 0.15}>
-              <div className="text-center">
-                <motion.span
-                  className="block text-5xl md:text-7xl lg:text-8xl font-bold text-warm-white"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: i * 0.15 }}
-                >
-                  <AnimatedCounter target={stat.value} suffix={stat.suffix} />
-                </motion.span>
-                <p className="text-warm-white/60 text-sm mt-3 tracking-wide">
-                  {stat.label}
-                </p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ------------------------------------------------------------------ */
 /*  CTA BAND                                                           */
@@ -1238,7 +1192,6 @@ export default function Home() {
         <Services />
         <Pricing />
         <Portfolio />
-        <Stats />
         <CtaBand />
         <Contacts />
       </main>
