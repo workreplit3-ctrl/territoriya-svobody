@@ -602,7 +602,7 @@ function About() {
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           <FadeIn direction="left" className="relative">
             <div className="relative aspect-[4/5] overflow-hidden">
-              <div className="absolute inset-[-5%] animate-kenburns-in wind-sway-strong">
+              <div className="absolute inset-0">
                 <img
                   src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b98d77bb3426.jpg"
                   alt="Ландшафтный проект"
