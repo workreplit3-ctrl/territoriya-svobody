@@ -75,3 +75,56 @@
     background-clip: text;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/*  KEN BURNS — slow cinematic background motion                         */
+/* ------------------------------------------------------------------ */
+
+@keyframes kenburns-slow {
+  0%   { transform: scale(1)    translate(0, 0); }
+  50%  { transform: scale(1.12) translate(-1%, -0.5%); }
+  100% { transform: scale(1)    translate(0, 0); }
+}
+
+@keyframes kenburns-drift-right {
+  0%   { transform: scale(1.08) translate(-2%, 0); }
+  50%  { transform: scale(1.15) translate(1%, 0.5%); }
+  100% { transform: scale(1.08) translate(-2%, 0); }
+}
+
+@keyframes kenburns-drift-left {
+  0%   { transform: scale(1.1)  translate(1%, 0); }
+  50%  { transform: scale(1.15) translate(-1%, -0.5%); }
+  100% { transform: scale(1.1)  translate(1%, 0); }
+}
+
+@keyframes kenburns-zoom-in {
+  0%   { transform: scale(1)    translate(0, 0); }
+  100% { transform: scale(1.2)  translate(-1%, -1%); }
+}
+
+@keyframes kenburns-zoom-out {
+  0%   { transform: scale(1.2)  translate(-1%, -0.5%); }
+  100% { transform: scale(1)    translate(0, 0); }
+}
+
+.animate-kenburns-slow {
+  animation: kenburns-slow 25s ease-in-out infinite;
+}
+
+.animate-kenburns-right {
+  animation: kenburns-drift-right 20s ease-in-out infinite;
+}
+
+.animate-kenburns-left {
+  animation: kenburns-drift-left 22s ease-in-out infinite;
+}
+
+.animate-kenburns-in {
+  animation: kenburns-zoom-in 30s ease-in-out infinite alternate;
+}
+
+.animate-kenburns-out {
+  animation: kenburns-zoom-out 30s ease-in-out infinite alternate;
+}
+

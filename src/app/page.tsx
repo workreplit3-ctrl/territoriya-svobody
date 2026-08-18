@@ -63,6 +63,15 @@ const SERVICES = [
   },
 ];
 
+const KENBURNS_CLASSES = [
+  'animate-kenburns-slow',
+  'animate-kenburns-right',
+  'animate-kenburns-left',
+  'animate-kenburns-in',
+  'animate-kenburns-out',
+  'animate-kenburns-slow',
+];
+
 const PORTFOLIO = [
   { title: 'Сад у озера', category: 'Частный сад', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/81138df5e3bf.jpg' },
   { title: 'Городской парк', category: 'Общественное пространство', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/0a5124839bbc.jpg' },
@@ -298,7 +307,7 @@ function Hero() {
     <section id="главная" className="relative h-screen w-full overflow-hidden">
       <motion.div className="absolute inset-0" style={{ scale: heroScale }}>
         <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-kenburns-slow"
           style={{
             backgroundImage: `url(${HERO_IMG})`,
             y: bgY,
@@ -379,11 +388,14 @@ function About() {
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           <FadeIn direction="left" className="relative">
             <div className="relative aspect-[4/5] overflow-hidden">
-              <ParallaxImg
-                src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b98d77bb3426.jpg"
-                alt="Ландшафтный проект"
-                className="w-full h-full"
-              />
+              <div className="absolute inset-[-5%] animate-kenburns-in">
+                <img
+                  src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b98d77bb3426.jpg"
+                  alt="Ландшафтный проект"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
             </div>
             <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-forest/10 -z-10" />
           </FadeIn>
@@ -499,13 +511,18 @@ function Portfolio() {
                 i === 0 ? 'sm:col-span-2 sm:row-span-2' : ''
               }`}
             >
-              <div className={`relative ${i === 0 ? 'aspect-[16/10] sm:aspect-auto sm:h-full' : 'aspect-[4/3]'}`}>
-                <img
-                  src={p.img}
-                  alt={p.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
+              <div className={`relative ${i === 0 ? 'aspect-[16/10] sm:aspect-auto sm:h-full' : 'aspect-[4/3]'} overflow-hidden`}>
+                <div
+                  className={`absolute inset-[-8%] ${KENBURNS_CLASSES[i]}`}
+                  style={{ animationDelay: `${i * 2}s` }}
+                >
+                  <img
+                    src={p.img}
+                    alt={p.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
                 <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/50 transition-all duration-500 flex flex-col justify-end p-6 md:p-8">
                   <div className="translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                     <p className="text-terracotta-light text-xs tracking-[0.15em] uppercase mb-2">
@@ -580,7 +597,7 @@ function CtaBand() {
         style={{ y: bgY }}
       >
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center animate-kenburns-right"
           style={{
             backgroundImage: `url(${PORTFOLIO[1].img})`,
           }}

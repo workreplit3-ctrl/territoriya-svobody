@@ -1,0 +1,785 @@
+     1→'use client';
+     2→
+     3→import { useState, useRef, useEffect, useCallback } from 'react';
+     4→import {
+     5→  motion,
+     6→  useScroll,
+     7→  useTransform,
+     8→  useInView,
+     9→  AnimatePresence,
+    10→} from 'framer-motion';
+    11→import {
+    12→  Menu,
+    13→  X,
+    14→  ArrowUpRight,
+    15→  Phone,
+    16→  Mail,
+    17→  MapPin,
+    18→  Leaf,
+    19→  TreePine,
+    20→  Flower2,
+    21→  Droplets,
+    22→  Sun,
+    23→  Palette,
+    24→  Ruler,
+    25→} from 'lucide-react';
+    26→
+    27→/* ------------------------------------------------------------------ */
+    28→/*  DATA                                                               */
+    29→/* ------------------------------------------------------------------ */
+    30→
+    31→const NAV_LINKS = ['Главная', 'О нас', 'Услуги', 'Портфолио', 'Контакты'];
+    32→
+    33→const SERVICES = [
+    34→  {
+    35→    icon: TreePine,
+    36→    title: 'ЛАНДШАФТНОЕ ПРОЕКТИРОВАНИЕ',
+    37→    desc: 'Разработка концептуальных и рабочих проектов для частных садов, парков и общественных пространств. Каждый проект — уникальное решение, учитывающее особенности рельефа, климата и образа жизни заказчика.',
+    38→  },
+    39→  {
+    40→    icon: Flower2,
+    41→    title: 'ПОДБОР РАСТЕНИЙ',
+    42→    desc: 'Профессиональная фитодизайн-подборка растений с учётом климатической зоны, состава почвы и освещённости. Создаём многоярусные растительные композиции, меняющиеся в течение всех сезонов.',
+    43→  },
+    44→  {
+    45→    icon: Droplets,
+    46→    title: 'ИНЖЕНЕРНЫЕ СИСТЕМЫ',
+    47→    desc: 'Проектирование систем автоматического полива, дренажа, искусственного освещения. Интегрированные инженерные решения, которые остаются незаметными, но обеспечивают комфорт и долговечность сада.',
+    48→  },
+    49→  {
+    50→    icon: Ruler,
+    51→    title: 'РЕАЛИЗАЦИЯ ПРОЕКТА',
+    52→    desc: 'Авторский надзор за строительными работами, подбор подрядчиков, контроль качества материалов. Ведём проект от первого эскиза до финальной высадки растений и первого освещения.',
+    53→  },
+    54→  {
+    55→    icon: Palette,
+    56→    title: 'ДЕКОРАТИВНОЕ ОФОРМЛЕНИЕ',
+    57→    desc: 'Подбор садовой мебели, декоративных элементов, скульптур и освещения. Формируем завершённую атмосферу, в которой архитектура сада и интерьер дома становятся единым целым.',
+    58→  },
+    59→  {
+    60→    icon: Sun,
+    61→    title: 'СЕЗОННЫЙ УХОД',
+    62→    desc: 'Комплексное обслуживание сада в течение года: обрезка, подкормка, защита от вредителей, подготовка к зиме. Ваш сад будет выглядеть безупречно в любое время года.',
+    63→  },
+    64→];
+    65→
+    66→const PORTFOLIO = [
+    67→  { title: 'Сад у озера', category: 'Частный сад', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/81138df5e3bf.jpg' },
+    68→  { title: 'Городской парк', category: 'Общественное пространство', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/0a5124839bbc.jpg' },
+    69→  { title: 'Зен-сад', category: 'Частный сад', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/58e246c64af3.jpg' },
+    70→  { title: 'Терраса с видом', category: 'Частный сад', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e738fe3ea5dd.jpg' },
+    71→  { title: 'Парадный вход', category: 'Общественное пространство', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6c5c25c00fac.jpg' },
+    72→  { title: 'Вечерний сад', category: 'Частный сад', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/eda517f3cf4a.jpg' },
+    73→];
+    74→
+    75→const STATS = [
+    76→  { value: 120, suffix: '+', label: 'Реализованных проектов' },
+    77→  { value: 15, suffix: '', label: 'Лет опыта' },
+    78→  { value: 8, suffix: '', label: 'Наград за дизайн' },
+    79→  { value: 100, suffix: '%', label: 'Экологичных решений' },
+    80→];
+    81→
+    82→const HERO_IMG = 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/52977949b810.jpg';
+    83→
+    84→/* ------------------------------------------------------------------ */
+    85→/*  ANIMATION HELPERS                                                  */
+    86→/* ------------------------------------------------------------------ */
+    87→
+    88→function FadeIn({ children, delay = 0, className = '', direction = 'up' }: {
+    89→  children: React.ReactNode;
+    90→  delay?: number;
+    91→  className?: string;
+    92→  direction?: 'up' | 'down' | 'left' | 'right';
+    93→}) {
+    94→  const ref = useRef(null);
+    95→  const isInView = useInView(ref, { once: true, margin: '-60px' });
+    96→
+    97→  const dirs: Record<string, { y: number; x: number }> = {
+    98→    up: { y: 50, x: 0 },
+    99→    down: { y: -50, x: 0 },
+   100→    left: { y: 0, x: 50 },
+   101→    right: { y: 0, x: -50 },
+   102→  };
+   103→
+   104→  return (
+   105→    <motion.div
+   106→      ref={ref}
+   107→      className={className}
+   108→      initial={{ opacity: 0, ...dirs[direction] }}
+   109→      animate={isInView ? { opacity: 1, y: 0, x: 0 } : {}}
+   110→      transition={{ duration: 0.8, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+   111→    >
+   112→      {children}
+   113→    </motion.div>
+   114→  );
+   115→}
+   116→
+   117→function ParallaxImg({ src, alt, className = '', speed = 0.3 }: {
+   118→  src: string;
+   119→  alt: string;
+   120→  className?: string;
+   121→  speed?: number;
+   122→}) {
+   123→  const ref = useRef(null);
+   124→  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+   125→  const y = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
+   126→  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.15, 1, 1.15]);
+   127→
+   128→  return (
+   129→    <motion.div ref={ref} className={`overflow-hidden ${className}`}>
+   130→      <motion.img
+   131→        src={src}
+   132→        alt={alt}
+   133→        className="w-full h-full object-cover"
+   134→        style={{ y, scale }}
+   135→        loading="lazy"
+   136→      />
+   137→    </motion.div>
+   138→  );
+   139→}
+   140→
+   141→function StaggerChildren({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+   142→  const ref = useRef(null);
+   143→  const isInView = useInView(ref, { once: true, margin: '-40px' });
+   144→
+   145→  return (
+   146→    <motion.div
+   147→      ref={ref}
+   148→      className={className}
+   149→      initial="hidden"
+   150→      animate={isInView ? 'visible' : 'hidden'}
+   151→      variants={{
+   152→        hidden: {},
+   153→        visible: { transition: { staggerChildren: 0.12 } },
+   154→      }}
+   155→    >
+   156→      {children}
+   157→    </motion.div>
+   158→  );
+   159→}
+   160→
+   161→const staggerItem = {
+   162→  hidden: { opacity: 0, y: 40 },
+   163→  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } },
+   164→};
+   165→
+   166→/* ------------------------------------------------------------------ */
+   167→/*  ANIMATED COUNTER                                                   */
+   168→/* ------------------------------------------------------------------ */
+   169→
+   170→function AnimatedCounter({ target, suffix }: { target: number; suffix: string }) {
+   171→  const [count, setCount] = useState(0);
+   172→  const ref = useRef<HTMLSpanElement>(null);
+   173→  const hasAnimated = useRef(false);
+   174→  const isInView = useInView(ref, { once: true, margin: '-60px' });
+   175→
+   176→  useEffect(() => {
+   177→    if (!isInView || hasAnimated.current) return;
+   178→    hasAnimated.current = true;
+   179→
+   180→    const duration = 2000;
+   181→    const startTime = Date.now();
+   182→
+   183→    const step = () => {
+   184→      const elapsed = Date.now() - startTime;
+   185→      const progress = Math.min(elapsed / duration, 1);
+   186→      // Ease out cubic
+   187→      const eased = 1 - Math.pow(1 - progress, 3);
+   188→      setCount(Math.round(eased * target));
+   189→      if (progress < 1) {
+   190→        requestAnimationFrame(step);
+   191→      }
+   192→    };
+   193→    requestAnimationFrame(step);
+   194→  }, [isInView, target]);
+   195→
+   196→  return (
+   197→    <span ref={ref} className="tabular-nums">
+   198→      {count}{suffix}
+   199→    </span>
+   200→  );
+   201→}
+   202→
+   203→/* ------------------------------------------------------------------ */
+   204→/*  NAVIGATION                                                         */
+   205→/* ------------------------------------------------------------------ */
+   206→
+   207→function Navigation() {
+   208→  const [menuOpen, setMenuOpen] = useState(false);
+   209→  const navRef = useRef<HTMLElement>(null);
+   210→  const { scrollY } = useScroll();
+   211→  const bgOpacity = useTransform(scrollY, [0, 80], [0, 1]);
+   212→  const bgBlur = useTransform(scrollY, [0, 80], [0, 12]);
+   213→  const blurValue = useTransform(bgBlur, (v: number) => `blur(${v}px)`);
+   214→
+   215→  return (
+   216→    <motion.nav
+   217→      ref={navRef}
+   218→      className="fixed top-0 left-0 right-0 z-50"
+   219→      style={{
+   220→        backdropFilter: blurValue,
+   221→        WebkitBackdropFilter: blurValue,
+   222→      }}
+   223→    >
+   224→      <motion.div
+   225→        className="absolute inset-0 bg-charcoal/90 border-b border-white/5"
+   226→        style={{ opacity: bgOpacity }}
+   227→      />
+   228→      <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-20">
+   229→        <a href="#" className="flex items-center gap-2 text-warm-white">
+   230→          <Leaf className="w-6 h-6 text-terracotta" strokeWidth={1.5} />
+   231→          <span className="text-lg font-semibold tracking-[0.15em] uppercase">
+   232→            Flora
+   233→          </span>
+   234→        </a>
+   235→
+   236→        <ul className="hidden md:flex items-center gap-8">
+   237→          {NAV_LINKS.map((link) => (
+   238→            <li key={link}>
+   239→              <a
+   240→                href={`#${link.toLowerCase().replace(' ', '-')}`}
+   241→                className="text-sm tracking-[0.08em] uppercase text-warm-white/70 hover:text-warm-white transition-colors duration-300"
+   242→              >
+   243→                {link}
+   244→              </a>
+   245→            </li>
+   246→          ))}
+   247→        </ul>
+   248→
+   249→        <button
+   250→          className="md:hidden text-warm-white"
+   251→          onClick={() => setMenuOpen((v) => !v)}
+   252→          aria-label="Toggle menu"
+   253→        >
+   254→          {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+   255→        </button>
+   256→      </div>
+   257→
+   258→      <AnimatePresence>
+   259→        {menuOpen && (
+   260→          <motion.div
+   261→            initial={{ opacity: 0, height: 0 }}
+   262→            animate={{ opacity: 1, height: 'auto' }}
+   263→            exit={{ opacity: 0, height: 0 }}
+   264→            className="md:hidden overflow-hidden bg-charcoal/95"
+   265→          >
+   266→            <ul className="flex flex-col px-6 py-6 gap-4">
+   267→              {NAV_LINKS.map((link) => (
+   268→                <li key={link}>
+   269→                  <a
+   270→                    href={`#${link.toLowerCase().replace(' ', '-')}`}
+   271→                    className="text-sm tracking-[0.08em] uppercase text-warm-white/70 hover:text-warm-white transition-colors"
+   272→                    onClick={() => setMenuOpen(false)}
+   273→                  >
+   274→                    {link}
+   275→                  </a>
+   276→                </li>
+   277→              ))}
+   278→            </ul>
+   279→          </motion.div>
+   280→        )}
+   281→      </AnimatePresence>
+   282→    </motion.nav>
+   283→  );
+   284→}
+   285→
+   286→/* ------------------------------------------------------------------ */
+   287→/*  HERO                                                               */
+   288→/* ------------------------------------------------------------------ */
+   289→
+   290→function Hero() {
+   291→  const { scrollYProgress } = useScroll();
+   292→  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+   293→  const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 1.05]);
+   294→  const textY = useTransform(scrollYProgress, [0, 0.2], [0, -60]);
+   295→  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+   296→
+   297→  return (
+   298→    <section id="главная" className="relative h-screen w-full overflow-hidden">
+   299→      <motion.div className="absolute inset-0" style={{ scale: heroScale }}>
+   300→        <motion.div
+   301→          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+   302→          style={{
+   303→            backgroundImage: `url(${HERO_IMG})`,
+   304→            y: bgY,
+   305→          }}
+   306→        />
+   307→        <div className="absolute inset-0 bg-charcoal/60" />
+   308→        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-charcoal to-transparent" />
+   309→      </motion.div>
+   310→
+   311→      <motion.div
+   312→        className="relative z-10 flex flex-col justify-end h-full max-w-[1400px] mx-auto px-5 sm:px-6 md:px-10 pb-28 md:pb-32 [padding-bottom:env(safe-area-inset-bottom,7rem)]"
+   313→        style={{ opacity: heroOpacity, y: textY }}
+   314→      >
+   315→        <motion.p
+   316→          className="text-terracotta-light text-sm md:text-base tracking-[0.2em] uppercase mb-4"
+   317→          initial={{ opacity: 0, y: 30 }}
+   318→          animate={{ opacity: 1, y: 0 }}
+   319→          transition={{ duration: 0.8, delay: 0.3 }}
+   320→        >
+   321→          Студия ландшафтного дизайна
+   322→        </motion.p>
+   323→
+   324→        <motion.h1
+   325→          className="text-warm-white text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight max-w-4xl"
+   326→          initial={{ opacity: 0, y: 50 }}
+   327→          animate={{ opacity: 1, y: 0 }}
+   328→          transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+   329→        >
+   330→          ИСКУССТВО
+   331→          <br />
+   332→          <span className="text-terracotta-light">СОЗДАВАТЬ</span>
+   333→          <br />
+   334→          ЛАНДШАФТ
+   335→        </motion.h1>
+   336→
+   337→        <motion.div
+   338→          className="mt-8 md:mt-12"
+   339→          initial={{ opacity: 0, y: 30 }}
+   340→          animate={{ opacity: 1, y: 0 }}
+   341→          transition={{ duration: 0.8, delay: 0.9 }}
+   342→        >
+   343→          <a
+   344→            href="#контакты"
+   345→            className="inline-flex items-center gap-3 bg-terracotta hover:bg-terracotta-light text-warm-white px-8 py-4 text-sm tracking-[0.12em] uppercase transition-all duration-300 group"
+   346→          >
+   347→            Обсудить проект
+   348→            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+   349→          </a>
+   350→        </motion.div>
+   351→      </motion.div>
+   352→
+   353→      <motion.div
+   354→        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+   355→        initial={{ opacity: 0 }}
+   356→        animate={{ opacity: 1 }}
+   357→        transition={{ delay: 1.5, duration: 1 }}
+   358→      >
+   359→        <div className="w-5 h-8 border-2 border-warm-white/30 rounded-full flex items-start justify-center p-1">
+   360→          <motion.div
+   361→            className="w-1 h-2 bg-warm-white/60 rounded-full"
+   362→            animate={{ y: [0, 10, 0] }}
+   363→            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+   364→          />
+   365→        </div>
+   366→      </motion.div>
+   367→    </section>
+   368→  );
+   369→}
+   370→
+   371→/* ------------------------------------------------------------------ */
+   372→/*  ABOUT / PHILOSOPHY                                                 */
+   373→/* ------------------------------------------------------------------ */
+   374→
+   375→function About() {
+   376→  return (
+   377→    <section id="о-нас" className="bg-cream py-24 md:py-36 overflow-hidden">
+   378→      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+   379→        <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+   380→          <FadeIn direction="left" className="relative">
+   381→            <div className="relative aspect-[4/5] overflow-hidden">
+   382→              <ParallaxImg
+   383→                src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b98d77bb3426.jpg"
+   384→                alt="Ландшафтный проект"
+   385→                className="w-full h-full"
+   386→              />
+   387→            </div>
+   388→            <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-forest/10 -z-10" />
+   389→          </FadeIn>
+   390→
+   391→          <div>
+   392→            <FadeIn>
+   393→              <p className="text-terracotta text-sm tracking-[0.2em] uppercase mb-4">
+   394→                О студии
+   395→              </p>
+   396→            </FadeIn>
+   397→            <FadeIn delay={0.1}>
+   398→              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8">
+   399→                Природа — наш
+   400→                <br />
+   401→                главный партнёр
+   402→              </h2>
+   403→            </FadeIn>
+   404→            <FadeIn delay={0.2}>
+   405→              <p className="text-warm-gray text-base md:text-lg leading-relaxed mb-6">
+   406→                Мы — команда ландшафтных архитекторов, садовников и инженеров, объединённых
+   407→                убеждением, что окружающая среда напрямую влияет на качество жизни. Каждый
+   408→                проект, который мы создаём, начинается с глубокого понимания места: его
+   409→                истории, климата, почвы и тех, кто будет в нём жить.
+   410→              </p>
+   411→            </FadeIn>
+   412→            <FadeIn delay={0.3}>
+   413→              <p className="text-warm-gray text-base md:text-lg leading-relaxed mb-8">
+   414→                Наш подход сочетает экологическую ответственность с эстетическим совершенством.
+   415→                Мы не навязываем природе форму — мы находим язык диалога между человеком и
+   416→                ландшафтом, чтобы сад стал продолжением дома и отражением характера его владельца.
+   417→              </p>
+   418→            </FadeIn>
+   419→            <FadeIn delay={0.4}>
+   420→              <div className="flex items-center gap-4 text-sm text-forest font-medium tracking-wide uppercase">
+   421→                <div className="w-12 h-[1px] bg-terracotta" />
+   422→                С 2010 года
+   423→              </div>
+   424→            </FadeIn>
+   425→          </div>
+   426→        </div>
+   427→      </div>
+   428→    </section>
+   429→  );
+   430→}
+   431→
+   432→/* ------------------------------------------------------------------ */
+   433→/*  SERVICES                                                           */
+   434→/* ------------------------------------------------------------------ */
+   435→
+   436→function Services() {
+   437→  return (
+   438→    <section id="услуги" className="bg-warm-white py-24 md:py-36">
+   439→      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+   440→        <FadeIn className="mb-16 md:mb-20">
+   441→          <p className="text-terracotta text-sm tracking-[0.2em] uppercase mb-4">
+   442→            Что мы делаем
+   443→          </p>
+   444→          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+   445→            Полный цикл создания<br className="hidden md:block" /> ландшафта
+   446→          </h2>
+   447→        </FadeIn>
+   448→
+   449→        <StaggerChildren className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+   450→          {SERVICES.map((s) => (
+   451→            <motion.div
+   452→              key={s.title}
+   453→              variants={staggerItem}
+   454→              className="group relative p-8 md:p-10 border border-border/60 hover:border-terracotta/40 transition-all duration-500 hover:shadow-lg hover:shadow-terracotta/5"
+   455→            >
+   456→              <s.icon
+   457→                className="w-8 h-8 text-terracotta mb-6 transition-transform duration-300 group-hover:scale-110"
+   458→                strokeWidth={1.2}
+   459→              />
+   460→              <h3 className="text-sm font-semibold tracking-[0.1em] uppercase mb-4">
+   461→                {s.title}
+   462→              </h3>
+   463→              <p className="text-warm-gray text-sm leading-relaxed">
+   464→                {s.desc}
+   465→              </p>
+   466→              <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-terracotta group-hover:w-full transition-all duration-500" />
+   467→            </motion.div>
+   468→          ))}
+   469→        </StaggerChildren>
+   470→      </div>
+   471→    </section>
+   472→  );
+   473→}
+   474→
+   475→/* ------------------------------------------------------------------ */
+   476→/*  PORTFOLIO                                                          */
+   477→/* ------------------------------------------------------------------ */
+   478→
+   479→function Portfolio() {
+   480→  return (
+   481→    <section id="портфолио" className="bg-charcoal py-24 md:py-36 overflow-hidden">
+   482→      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+   483→        <FadeIn className="mb-16 md:mb-20">
+   484→          <p className="text-terracotta-light text-sm tracking-[0.2em] uppercase mb-4">
+   485→            Наши работы
+   486→          </p>
+   487→          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-warm-white">
+   488→            Проекты, в которые
+   489→            <br className="hidden md:block" /> мы вложили душу
+   490→          </h2>
+   491→        </FadeIn>
+   492→
+   493→        <StaggerChildren className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+   494→          {PORTFOLIO.map((p, i) => (
+   495→            <motion.div
+   496→              key={p.title}
+   497→              variants={staggerItem}
+   498→              className={`group relative overflow-hidden cursor-pointer ${
+   499→                i === 0 ? 'sm:col-span-2 sm:row-span-2' : ''
+   500→              }`}
+   501→            >
+   502→              <div className={`relative ${i === 0 ? 'aspect-[16/10] sm:aspect-auto sm:h-full' : 'aspect-[4/3]'}`}>
+   503→                <img
+   504→                  src={p.img}
+   505→                  alt={p.title}
+   506→                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+   507→                  loading="lazy"
+   508→                />
+   509→                <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/50 transition-all duration-500 flex flex-col justify-end p-6 md:p-8">
+   510→                  <div className="translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+   511→                    <p className="text-terracotta-light text-xs tracking-[0.15em] uppercase mb-2">
+   512→                      {p.category}
+   513→                    </p>
+   514→                    <h3 className="text-warm-white text-xl md:text-2xl font-semibold">
+   515→                      {p.title}
+   516→                    </h3>
+   517→                  </div>
+   518→                </div>
+   519→              </div>
+   520→            </motion.div>
+   521→          ))}
+   522→        </StaggerChildren>
+   523→      </div>
+   524→    </section>
+   525→  );
+   526→}
+   527→
+   528→/* ------------------------------------------------------------------ */
+   529→/*  STATS                                                              */
+   530→/* ------------------------------------------------------------------ */
+   531→
+   532→function Stats() {
+   533→  const ref = useRef(null);
+   534→  const isInView = useInView(ref, { once: true, margin: '-100px' });
+   535→
+   536→  return (
+   537→    <section className="bg-forest py-24 md:py-32 relative overflow-hidden">
+   538→      <div className="absolute inset-0 opacity-5">
+   539→        <div className="absolute top-10 left-10 w-64 h-64 border border-warm-white rounded-full" />
+   540→        <div className="absolute bottom-10 right-10 w-96 h-96 border border-warm-white rounded-full" />
+   541→      </div>
+   542→
+   543→      <div ref={ref} className="max-w-[1400px] mx-auto px-6 md:px-10 relative z-10">
+   544→        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16">
+   545→          {STATS.map((stat, i) => (
+   546→            <FadeIn key={stat.label} delay={i * 0.15}>
+   547→              <div className="text-center">
+   548→                <motion.span
+   549→                  className="block text-5xl md:text-7xl lg:text-8xl font-bold text-warm-white"
+   550→                  initial={{ opacity: 0, y: 30 }}
+   551→                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+   552→                  transition={{ duration: 0.8, delay: i * 0.15 }}
+   553→                >
+   554→                  <AnimatedCounter target={stat.value} suffix={stat.suffix} />
+   555→                </motion.span>
+   556→                <p className="text-warm-white/60 text-sm mt-3 tracking-wide">
+   557→                  {stat.label}
+   558→                </p>
+   559→              </div>
+   560→            </FadeIn>
+   561→          ))}
+   562→        </div>
+   563→      </div>
+   564→    </section>
+   565→  );
+   566→}
+   567→
+   568→/* ------------------------------------------------------------------ */
+   569→/*  CTA BAND                                                           */
+   570→/* ------------------------------------------------------------------ */
+   571→
+   572→function CtaBand() {
+   573→  const { scrollYProgress } = useScroll();
+   574→  const bgY = useTransform(scrollYProgress, [0.4, 0.8], ['0%', '-10%']);
+   575→
+   576→  return (
+   577→    <section className="relative py-32 md:py-44 overflow-hidden">
+   578→      <motion.div
+   579→        className="absolute inset-0"
+   580→        style={{ y: bgY }}
+   581→      >
+   582→        <div
+   583→          className="absolute inset-0 bg-cover bg-center"
+   584→          style={{
+   585→            backgroundImage: `url(${PORTFOLIO[1].img})`,
+   586→          }}
+   587→        />
+   588→        <div className="absolute inset-0 bg-charcoal/70" />
+   589→      </motion.div>
+   590→
+   591→      <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 text-center">
+   592→        <FadeIn>
+   593→          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-warm-white leading-tight mb-8">
+   594→            Готовы преобразить<br className="hidden md:block" /> ваш участок?
+   595→          </h2>
+   596→        </FadeIn>
+   597→        <FadeIn delay={0.2}>
+   598→          <p className="text-warm-white/70 text-base md:text-lg max-w-xl mx-auto mb-10">
+   599→            Расскажите нам о вашей мечте — и мы превратим её в реальный проект,
+   600→            который будет радовать вас долгие годы.
+   601→          </p>
+   602→        </FadeIn>
+   603→        <FadeIn delay={0.4}>
+   604→          <a
+   605→            href="#контакты"
+   606→            className="inline-flex items-center gap-3 bg-terracotta hover:bg-terracotta-light text-warm-white px-10 py-5 text-sm tracking-[0.12em] uppercase transition-all duration-300 group"
+   607→          >
+   608→            Начать проект
+   609→            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+   610→          </a>
+   611→        </FadeIn>
+   612→      </div>
+   613→    </section>
+   614→  );
+   615→}
+   616→
+   617→/* ------------------------------------------------------------------ */
+   618→/*  CONTACTS                                                           */
+   619→/* ------------------------------------------------------------------ */
+   620→
+   621→function Contacts() {
+   622→  return (
+   623→    <section id="контакты" className="bg-cream py-24 md:py-36">
+   624→      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+   625→        <div className="grid md:grid-cols-2 gap-12 md:gap-20">
+   626→          <FadeIn>
+   627→            <p className="text-terracotta text-sm tracking-[0.2em] uppercase mb-4">
+   628→              Свяжитесь с нами
+   629→            </p>
+   630→            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8">
+   631→              Давайте создадим
+   632→              <br />
+   633→              что-то прекрасное
+   634→            </h2>
+   635→            <p className="text-warm-gray text-base md:text-lg leading-relaxed mb-10">
+   636→              Мы всегда рады обсудить ваш будущий проект. Оставьте заявку или
+   637→              свяжитесь с нами любым удобным способом — первое знакомство и консультация
+   638→              бесплатно.
+   639→            </p>
+   640→
+   641→            <div className="space-y-6">
+   642→              <a href="tel:" className="flex items-center gap-4 group">
+   643→                <div className="w-12 h-12 flex items-center justify-center border border-border group-hover:border-terracotta group-hover:bg-terracotta/5 transition-all duration-300">
+   644→                  <Phone className="w-5 h-5 text-terracotta" strokeWidth={1.2} />
+   645→                </div>
+   646→                <div>
+   647→                  <p className="text-xs text-warm-gray tracking-wide uppercase">Телефон</p>
+   648→                  <p className="text-foreground font-medium">Ваш номер</p>
+   649→                </div>
+   650→              </a>
+   651→
+   652→              <a href="mailto:" className="flex items-center gap-4 group">
+   653→                <div className="w-12 h-12 flex items-center justify-center border border-border group-hover:border-terracotta group-hover:bg-terracotta/5 transition-all duration-300">
+   654→                  <Mail className="w-5 h-5 text-terracotta" strokeWidth={1.2} />
+   655→                </div>
+   656→                <div>
+   657→                  <p className="text-xs text-warm-gray tracking-wide uppercase">Email</p>
+   658→                  <p className="text-foreground font-medium">Ваш email</p>
+   659→                </div>
+   660→              </a>
+   661→
+   662→              <div className="flex items-center gap-4">
+   663→                <div className="w-12 h-12 flex items-center justify-center border border-border">
+   664→                  <MapPin className="w-5 h-5 text-terracotta" strokeWidth={1.2} />
+   665→                </div>
+   666→                <div>
+   667→                  <p className="text-xs text-warm-gray tracking-wide uppercase">Адрес</p>
+   668→                  <p className="text-foreground font-medium">Ваш адрес</p>
+   669→                </div>
+   670→              </div>
+   671→            </div>
+   672→          </FadeIn>
+   673→
+   674→          <FadeIn delay={0.2}>
+   675→            <form className="bg-warm-white p-8 md:p-10 border border-border/60" onSubmit={(e) => e.preventDefault()}>
+   676→              <div className="space-y-6">
+   677→                <div>
+   678→                  <label className="block text-xs tracking-[0.1em] uppercase text-warm-gray mb-2">
+   679→                    Имя
+   680→                  </label>
+   681→                  <input
+   682→                    type="text"
+   683→                    placeholder="Как к вам обращаться"
+   684→                    className="w-full bg-transparent border-b-2 border-charcoal/20 focus:border-terracotta outline-none py-3 text-foreground placeholder:text-warm-gray/40 transition-colors duration-300"
+   685→                  />
+   686→                </div>
+   687→                <div>
+   688→                  <label className="block text-xs tracking-[0.1em] uppercase text-warm-gray mb-2">
+   689→                    Телефон
+   690→                  </label>
+   691→                  <input
+   692→                    type="tel"
+   693→                    placeholder="+7 (___) ___-__-__"
+   694→                    className="w-full bg-transparent border-b-2 border-charcoal/20 focus:border-terracotta outline-none py-3 text-foreground placeholder:text-warm-gray/40 transition-colors duration-300"
+   695→                  />
+   696→                </div>
+   697→                <div>
+   698→                  <label className="block text-xs tracking-[0.1em] uppercase text-warm-gray mb-2">
+   699→                    Сообщение
+   700→                  </label>
+   701→                  <textarea
+   702→                    rows={4}
+   703→                    placeholder="Расскажите о вашем проекте"
+   704→                    className="w-full bg-transparent border-b-2 border-charcoal/20 focus:border-terracotta outline-none py-3 text-foreground placeholder:text-warm-gray/40 transition-colors duration-300 resize-none"
+   705→                  />
+   706→                </div>
+   707→                <button
+   708→                  type="submit"
+   709→                  className="w-full bg-charcoal hover:bg-charcoal-light text-warm-white py-4 text-sm tracking-[0.12em] uppercase transition-all duration-300 flex items-center justify-center gap-2 group"
+   710→                >
+   711→                  Отправить заявку
+   712→                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+   713→                </button>
+   714→              </div>
+   715→            </form>
+   716→          </FadeIn>
+   717→        </div>
+   718→      </div>
+   719→    </section>
+   720→  );
+   721→}
+   722→
+   723→/* ------------------------------------------------------------------ */
+   724→/*  FOOTER                                                             */
+   725→/* ------------------------------------------------------------------ */
+   726→
+   727→function Footer() {
+   728→  return (
+   729→    <footer className="bg-charcoal py-16 md:py-20">
+   730→      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+   731→        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
+   732→          <div className="flex items-center gap-2 text-warm-white">
+   733→            <Leaf className="w-5 h-5 text-terracotta" strokeWidth={1.5} />
+   734→            <span className="text-base font-semibold tracking-[0.15em] uppercase">
+   735→              Flora
+   736→            </span>
+   737→          </div>
+   738→          <div className="flex flex-wrap gap-8">
+   739→            {NAV_LINKS.map((link) => (
+   740→              <a
+   741→                key={link}
+   742→                href={`#${link.toLowerCase().replace(' ', '-')}`}
+   743→                className="text-sm text-warm-white/50 hover:text-warm-white transition-colors duration-300 tracking-wide"
+   744→              >
+   745→                {link}
+   746→              </a>
+   747→            ))}
+   748→          </div>
+   749→        </div>
+   750→
+   751→        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+   752→          <p className="text-xs text-warm-white/30">
+   753→            &copy; {new Date().getFullYear()} Flora. Все права защищены.
+   754→          </p>
+   755→          <p className="text-xs text-warm-white/30">
+   756→            Ландшафтный дизайн и архитектура
+   757→          </p>
+   758→        </div>
+   759→      </div>
+   760→    </footer>
+   761→  );
+   762→}
+   763→
+   764→/* ------------------------------------------------------------------ */
+   765→/*  PAGE                                                               */
+   766→/* ------------------------------------------------------------------ */
+   767→
+   768→export default function Home() {
+   769→  return (
+   770→    <div className="min-h-screen flex flex-col">
+   771→      <Navigation />
+   772→      <main>
+   773→        <Hero />
+   774→        <About />
+   775→        <Services />
+   776→        <Portfolio />
+   777→        <Stats />
+   778→        <CtaBand />
+   779→        <Contacts />
+   780→      </main>
+   781→      <Footer />
+   782→    </div>
+   783→  );
+   784→}
+   785→
