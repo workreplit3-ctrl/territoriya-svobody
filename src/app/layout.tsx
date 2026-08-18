@@ -29,7 +29,31 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>{children}</body>
+      <body className={`${inter.variable} font-sans antialiased`}>
+        {/* SVG filters for nature effects */}
+        <svg
+          aria-hidden="true"
+          style={{ position: 'absolute', width: 0, height: 0 }}
+        >
+          <filter id="wind-displacement">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.015 0.04"
+              numOctaves="2"
+              seed="3"
+              result="noise"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale="12"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </svg>
+        {children}
+      </body>
     </html>
   );
 }

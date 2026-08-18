@@ -91,6 +91,219 @@ const STATS = [
 const HERO_IMG = 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/52977949b810.jpg';
 
 /* ------------------------------------------------------------------ */
+/*  PARTICLE GENERATOR HELPERS                                         */
+/* ------------------------------------------------------------------ */
+
+const EMBERS = Array.from({ length: 18 }, (_, i) => ({
+  id: i,
+  left: `${15 + Math.random() * 35}%`,
+  bottom: `${20 + Math.random() * 30}%`,
+  size: 2 + Math.random() * 3,
+  dur: 3 + Math.random() * 4,
+  delay: Math.random() * 5,
+  drift: -30 + Math.random() * 60,
+  color: Math.random() > 0.4
+    ? `rgba(255, ${140 + Math.floor(Math.random() * 80)}, ${40 + Math.floor(Math.random() * 40)}, 0.9)`
+    : `rgba(255, ${200 + Math.floor(Math.random() * 55)}, ${80 + Math.floor(Math.random() * 60)}, 0.7)`,
+}));
+
+const FIREFLIES = Array.from({ length: 14 }, (_, i) => ({
+  id: i,
+  left: `${5 + Math.random() * 90}%`,
+  top: `${10 + Math.random() * 80}%`,
+  size: 3 + Math.random() * 4,
+  dur: 3 + Math.random() * 5,
+  driftDur: 10 + Math.random() * 10,
+  delay: Math.random() * 6,
+  fx: -40 + Math.random() * 80,
+  fy: -30 + Math.random() * 60,
+  fx2: -30 + Math.random() * 60,
+  fy2: -20 + Math.random() * 40,
+  fx3: -35 + Math.random() * 70,
+  fy3: -25 + Math.random() * 50,
+}));
+
+const LEAVES = Array.from({ length: 10 }, (_, i) => ({
+  id: i,
+  left: `${Math.random() * 100}%`,
+  size: 14 + Math.random() * 14,
+  dur: 6 + Math.random() * 7,
+  delay: Math.random() * 8,
+  sway: 25 + Math.random() * 50,
+  swayEnd: -25 + Math.random() * 50,
+  rotation: Math.random() > 0.5,
+}));
+
+const POLLEN = Array.from({ length: 10 }, (_, i) => ({
+  id: i,
+  left: `${Math.random() * 100}%`,
+  top: `${Math.random() * 100}%`,
+  size: 2 + Math.random() * 3,
+  dur: 5 + Math.random() * 6,
+  delay: Math.random() * 8,
+  dx: -30 + Math.random() * 60,
+  dy: -50 + Math.random() * 30,
+  dx2: -25 + Math.random() * 50,
+  dy2: -70 + Math.random() * 40,
+}));
+
+/* ------------------------------------------------------------------ */
+/*  PARTICLE COMPONENTS                                                */
+/* ------------------------------------------------------------------ */
+
+function Embers() {
+  return (
+    <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
+      {/* Warm glow pulse */}
+      <div
+        className="absolute bottom-[25%] left-[25%] w-40 h-40 rounded-full"
+        style={{
+          background: 'radial-gradient(circle, rgba(255,150,50,0.25) 0%, transparent 70%)',
+          animation: 'fire-glow 3s ease-in-out infinite',
+        }}
+      />
+      <div
+        className="absolute bottom-[30%] left-[30%] w-28 h-28 rounded-full"
+        style={{
+          background: 'radial-gradient(circle, rgba(255,180,80,0.2) 0%, transparent 70%)',
+          animation: 'fire-glow 4s ease-in-out 1s infinite',
+        }}
+      />
+      {/* Rising embers */}
+      {EMBERS.map((e) => (
+        <div
+          key={e.id}
+          className="particle-ember"
+          style={{
+            left: e.left,
+            bottom: e.bottom,
+            width: e.size,
+            height: e.size,
+            background: e.color,
+            boxShadow: `0 0 ${e.size * 2}px ${e.color}`,
+            '--drift': `${e.drift}px`,
+            '--dur': `${e.dur}s`,
+            '--delay': `${e.delay}s`,
+          } as React.CSSProperties}
+        />
+      ))}
+      {/* Soft glow dots */}
+      {EMBERS.slice(0, 6).map((e) => (
+        <div
+          key={`g-${e.id}`}
+          className="particle-ember-glow"
+          style={{
+            left: `${parseFloat(e.left) + (Math.random() - 0.5) * 10}%`,
+            bottom: `${parseFloat(e.bottom) + 5}%`,
+            width: e.size * 2.5,
+            height: e.size * 2.5,
+            background: 'rgba(255,160,60,0.15)',
+            '--dur': `${e.dur * 0.7}s`,
+            '--delay': `${e.delay + 0.5}s`,
+          } as React.CSSProperties}
+        />
+      ))}
+    </div>
+  );
+}
+
+function Fireflies() {
+  return (
+    <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
+      {FIREFLIES.map((f) => (
+        <div
+          key={f.id}
+          className="particle-firefly"
+          style={{
+            left: f.left,
+            top: f.top,
+            width: f.size,
+            height: f.size,
+            background: 'radial-gradient(circle, rgba(255,240,180,0.9) 0%, rgba(255,220,120,0) 70%)',
+            boxShadow: '0 0 6px 2px rgba(255,230,140,0.4)',
+            '--dur': `${f.dur}s`,
+            '--drift-dur': `${f.driftDur}s`,
+            '--delay': `${f.delay}s`,
+            '--fx': `${f.fx}px`, '--fy': `${f.fy}px`,
+            '--fx2': `${f.fx2}px`, '--fy2': `${f.fy2}px`,
+            '--fx3': `${f.fx3}px`, '--fy3': `${f.fy3}px`,
+          } as React.CSSProperties}
+        />
+      ))}
+    </div>
+  );
+}
+
+function FallingLeaves() {
+  return (
+    <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
+      {LEAVES.map((l) => (
+        <div
+          key={l.id}
+          className="particle-leaf"
+          style={{
+            left: l.left,
+            top: '-5%',
+            width: l.size,
+            height: l.size * 0.6,
+            background: l.rotation
+              ? 'linear-gradient(135deg, rgba(100,160,60,0.7) 0%, rgba(70,130,40,0.4) 100%)'
+              : 'linear-gradient(135deg, rgba(190,150,50,0.6) 0%, rgba(170,120,30,0.3) 100%)',
+            borderRadius: '0 50% 50% 50%',
+            boxShadow: '0 1px 4px rgba(0,0,0,0.15)',
+            '--sway': `${l.sway}px`,
+            '--sway-end': `${l.swayEnd}px`,
+            '--dur': `${l.dur}s`,
+            '--delay': `${l.delay}s`,
+          } as React.CSSProperties}
+        />
+      ))}
+    </div>
+  );
+}
+
+function PollenDust() {
+  return (
+    <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
+      {POLLEN.map((p) => (
+        <div
+          key={p.id}
+          className="particle-pollen"
+          style={{
+            left: p.left,
+            top: p.top,
+            width: p.size,
+            height: p.size,
+            background: 'rgba(255,255,240,0.35)',
+            boxShadow: '0 0 3px rgba(255,255,200,0.2)',
+            '--dx': `${p.dx}px`, '--dy': `${p.dy}px`,
+            '--dx2': `${p.dx2}px`, '--dy2': `${p.dy2}px`,
+            '--dur': `${p.dur}s`,
+            '--delay': `${p.delay}s`,
+          } as React.CSSProperties}
+        />
+      ))}
+      {/* Subtle wind streaks */}
+      {[0, 1, 2].map((i) => (
+        <div
+          key={`w-${i}`}
+          className="particle-wind"
+          style={{
+            left: '0',
+            top: `${20 + i * 25}%`,
+            width: '15vw',
+            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)',
+            '--dur': `${5 + i * 2}s`,
+            '--delay': `${i * 3}s`,
+          } as React.CSSProperties}
+        />
+      ))}
+    </div>
+  );
+}
+
+
+/* ------------------------------------------------------------------ */
 /*  ANIMATION HELPERS                                                  */
 /* ------------------------------------------------------------------ */
 
@@ -315,6 +528,7 @@ function Hero() {
         />
         <div className="absolute inset-0 bg-charcoal/60" />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-charcoal to-transparent" />
+        <Embers />
       </motion.div>
 
       <motion.div
@@ -388,7 +602,7 @@ function About() {
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           <FadeIn direction="left" className="relative">
             <div className="relative aspect-[4/5] overflow-hidden">
-              <div className="absolute inset-[-5%] animate-kenburns-in">
+              <div className="absolute inset-[-5%] animate-kenburns-in wind-sway-strong">
                 <img
                   src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b98d77bb3426.jpg"
                   alt="Ландшафтный проект"
@@ -396,6 +610,7 @@ function About() {
                   loading="lazy"
                 />
               </div>
+              <FallingLeaves />
             </div>
             <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-forest/10 -z-10" />
           </FadeIn>
@@ -513,7 +728,7 @@ function Portfolio() {
             >
               <div className={`relative ${i === 0 ? 'aspect-[16/10] sm:aspect-auto sm:h-full' : 'aspect-[4/3]'} overflow-hidden`}>
                 <div
-                  className={`absolute inset-[-8%] ${KENBURNS_CLASSES[i]}`}
+                  className={`absolute inset-[-8%] ${KENBURNS_CLASSES[i]} wind-sway`}
                   style={{ animationDelay: `${i * 2}s` }}
                 >
                   <img
@@ -538,6 +753,7 @@ function Portfolio() {
           ))}
         </StaggerChildren>
       </div>
+      <PollenDust />
     </section>
   );
 }
@@ -597,12 +813,13 @@ function CtaBand() {
         style={{ y: bgY }}
       >
         <div
-          className="absolute inset-0 bg-cover bg-center animate-kenburns-right"
+          className="absolute inset-0 bg-cover bg-center animate-kenburns-right wind-sway"
           style={{
             backgroundImage: `url(${PORTFOLIO[1].img})`,
           }}
         />
         <div className="absolute inset-0 bg-charcoal/70" />
+        <Fireflies />
       </motion.div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 text-center">
