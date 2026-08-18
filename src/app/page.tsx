@@ -28,7 +28,7 @@ import {
 /*  DATA                                                               */
 /* ------------------------------------------------------------------ */
 
-const NAV_LINKS = ['Главная', 'О нас', 'Услуги', 'Портфолио', 'Контакты'];
+const NAV_LINKS = ['Главная', 'О нас', 'Услуги', 'Тарифы', 'Портфолио', 'Контакты'];
 
 const SERVICES = [
   {
@@ -848,6 +848,289 @@ function CtaBand() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  PRICING                                                            */
+/* ------------------------------------------------------------------ */
+
+const TARIFFS = [
+  {
+    name: 'Standart',
+    subtitle: 'Концептуальный проект развития сада на 10–15 лет',
+    area: 'до 20 соток',
+    price: '40 000 – 45 000 ₽',
+    priceAlt: '52 000 – 58 500 ₽',
+    note: 'Пакет Standart (включая доп. услуги по тарифу)',
+    includes: [
+      'Выезд специалиста на участок (до 100 км или онлайн)',
+      'Подбор концепции: органические или геометрические формы',
+      'Подбор стилистических аналогов',
+      'Эскиз планировочного решения (1–3 варианта)',
+      'Финальный эскиз с учётом пожеланий клиента',
+      '3D-визуализация основных видовых точек',
+      'Финализация эскиза после 3D',
+    ],
+    extras: [
+      { text: 'Видеопрогулка по саду', price: '5 000 – 7 000 ₽' },
+      { text: 'Планиметрическая съёмка участка', price: '10 000 ₽' },
+      { text: 'Дополнительные эскизы', price: '5 000 – 7 000 ₽' },
+    ],
+    noteHeight: 'Перепад высот более 1 м — коэфф. 1,3',
+    noteTopo: 'Топосъёмка оплачивается отдельно',
+  },
+  {
+    name: 'Standart +',
+    subtitle: 'Проект в двух стилистиках: органические и геометрические',
+    area: 'до 20 соток',
+    price: '55 000 – 65 000 ₽',
+    priceAlt: null,
+    note: null,
+    includes: [
+      'Выезд специалиста на участок (до 100 км или онлайн)',
+      'Подбор стилистических аналогов',
+      '2 концепции: органические + геометрические формы',
+      'Эскизы планировочного решения по каждой концепции (1–3 вар.)',
+      'Выбор по 1 варианту для каждой стилистики',
+      '3D-визуализация для каждой стилистики',
+      'Финальный эскиз по выбранной стилистике',
+    ],
+    extras: [
+      { text: 'Видеопрогулка по саду (за каждую планировку)', price: '5 000 – 7 000 ₽' },
+      { text: 'Планиметрическая съёмка участка', price: '10 000 ₽' },
+      { text: 'Дополнительные эскизы', price: '5 000 – 7 000 ₽' },
+    ],
+    noteHeight: 'Перепад высот более 1 м — коэфф. 1,3',
+    noteTopo: 'Топосъёмка оплачивается отдельно',
+  },
+  {
+    name: 'Цветники',
+    subtitle: 'Укрупнённая схема цветника с ведомостью посадок',
+    area: null,
+    price: '10 000 – 15 000 ₽',
+    priceAlt: null,
+    note: 'Зависит от площади',
+    includes: [
+      'Разработка схемы цветника',
+      'Ведомость посадок',
+      'Отрисовка основных видовых точек',
+    ],
+    extras: [],
+    noteHeight: null,
+    noteTopo: null,
+  },
+  {
+    name: 'Дендропроект',
+    subtitle: 'Декоративные композиции из деревьев и кустарников',
+    area: 'весь участок',
+    price: '35 000 – 50 000 ₽',
+    priceAlt: null,
+    note: null,
+    includes: [
+      'Дендрологический план всего участка',
+      'Подбор деревьев и кустарников',
+      'Декоративные композиции',
+    ],
+    extras: [],
+    noteHeight: null,
+    noteTopo: null,
+  },
+];
+
+const ADDITIONAL_BLOCKS = [
+  {
+    title: 'Рабочая документация',
+    desc: 'Полный комплект чертежей для реализации проекта',
+    items: [
+      'Генеральный план',
+      'Разбивочный чертёж',
+      'Проект вертикальной планировки',
+      'Схема дренажной и ливневой канализации',
+      'План покрытий с конструктивными решениями',
+      'Схема освещения и подбор светильников',
+      'Дендропроект и ведомость посадок',
+      'Посадочный чертёж',
+    ],
+    prices: [
+      { label: 'до 20 соток', value: '65 000 – 75 000 ₽' },
+      { label: 'до 50 соток', value: '75 000 – 85 000 ₽' },
+    ],
+    note: 'Перепад высот более 1 м — коэфф. 1,3. Схема полива — дополнительно.',
+  },
+  {
+    title: 'All Inclusive',
+    desc: 'Концептуальный проект + полный комплект рабочих чертежей',
+    items: [],
+    prices: [
+      { label: 'Standart / до 20 соток', value: '95 000 – 115 000 ₽' },
+      { label: 'Standart / до 50 соток', value: '120 000 – 135 000 ₽' },
+      { label: 'Standart+ / до 20 соток', value: '110 000 – 125 000 ₽' },
+      { label: 'Standart+ / до 50 соток', value: '130 000 – 145 000 ₽' },
+    ],
+    note: 'Перепад высот более 1 м — коэфф. 1,3',
+  },
+  {
+    title: 'Услуги для ландшафтных дизайнеров',
+    desc: '3D-визуализация и вертикальная планировка по готовому эскизу',
+    items: [
+      { type: 'sub', text: '3D-визуализация без детализации растений', prices: ['до 20 соток — 35 000 ₽', 'до 50 соток — 45 000 ₽'] },
+      { type: 'sub', text: '3D-визуализация с детализацией насаждений', prices: ['до 20 соток — 45 000 ₽*', 'до 50 соток — 55 000 ₽*'] },
+      { type: 'sub', text: 'Проект вертикальной планировки по готовому эскизу', prices: ['от 15 000 ₽'] },
+    ],
+    prices: [],
+    note: 'Перепад высот более 1 м — коэфф. 1,3. *Модели растений за счёт заказчика при отсутствии в библиотеке.',
+  },
+];
+
+function Pricing() {
+  return (
+    <section id="тарифы" className="bg-warm-white py-24 md:py-36">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+        <FadeIn className="mb-16 md:mb-20">
+          <p className="text-terracotta text-sm tracking-[0.2em] uppercase mb-4">
+            Тарифы
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+            Прозрачные цены<br className="hidden md:block" /> на каждый этап
+          </h2>
+        </FadeIn>
+
+        {/* ---- Main Tariff Cards ---- */}
+        <StaggerChildren className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          {TARIFFS.map((t) => (
+            <motion.div
+              key={t.name}
+              variants={staggerItem}
+              className="bg-cream border border-border/40 p-7 md:p-8 flex flex-col hover:border-terracotta/30 transition-colors duration-500"
+            >
+              <p className="text-xs tracking-[0.15em] uppercase text-terracotta font-semibold mb-1">
+                {t.name}
+              </p>
+              {t.area && (
+                <p className="text-[11px] text-warm-gray mb-4">Участок {t.area}</p>
+              )}
+              {!t.area && <div className="mb-4" />}
+              <p className="text-warm-gray text-sm leading-relaxed mb-5 min-h-[2.5rem]">
+                {t.subtitle}
+              </p>
+
+              <p className="text-2xl font-bold text-foreground mb-1">{t.price}</p>
+              {t.priceAlt && (
+                <p className="text-sm text-forest font-medium mb-1">{t.priceAlt}</p>
+              )}
+              {t.note && (
+                <p className="text-xs text-warm-gray italic mb-4">{t.note}</p>
+              )}
+              {!t.note && !t.priceAlt && <div className="mb-4" />}
+
+              <div className="w-full h-px bg-border/50 mb-5" />
+
+              <ul className="space-y-2.5 flex-1 mb-5">
+                {t.includes.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-warm-gray leading-snug">
+                    <Leaf className="w-3.5 h-3.5 text-forest mt-0.5 shrink-0" strokeWidth={1.5} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              {t.extras.length > 0 && (
+                <>
+                  <div className="w-full h-px bg-border/30 mb-4" />
+                  <p className="text-[10px] tracking-[0.12em] uppercase text-warm-gray/60 mb-2">Дополнительно</p>
+                  <ul className="space-y-1.5">
+                    {t.extras.map((e) => (
+                      <li key={e.text} className="flex justify-between text-xs text-warm-gray">
+                        <span>{e.text}</span>
+                        <span className="text-foreground font-medium whitespace-nowrap ml-2">{e.price}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+
+              {(t.noteHeight || t.noteTopo) && (
+                <div className="mt-5 pt-4 border-t border-border/30 space-y-1">
+                  {t.noteHeight && (
+                    <p className="text-[11px] text-warm-gray/70">⚠ {t.noteHeight}</p>
+                  )}
+                  {t.noteTopo && (
+                    <p className="text-[11px] text-warm-gray/70">* {t.noteTopo}</p>
+                  )}
+                </div>
+              )}
+            </motion.div>
+          ))}
+        </StaggerChildren>
+
+        {/* ---- Additional Blocks ---- */}
+        <div className="space-y-10">
+          {ADDITIONAL_BLOCKS.map((block, bi) => (
+            <FadeIn key={block.title} delay={bi * 0.1}>
+              <div className="bg-cream border border-border/40 p-8 md:p-10">
+                <h3 className="text-xl md:text-2xl font-bold mb-2">{block.title}</h3>
+                <p className="text-warm-gray text-sm mb-6">{block.desc}</p>
+
+                {/* Items list for Рабочая документация */}
+                {block.items.length > 0 && typeof block.items[0] === 'string' && (
+                  <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2 mb-8">
+                    {(block.items as string[]).map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-warm-gray">
+                        <Ruler className="w-3.5 h-3.5 text-terracotta mt-0.5 shrink-0" strokeWidth={1.5} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {/* Sub-items for услуги для дизайнеров */}
+                {block.items.length > 0 && typeof block.items[0] === 'object' && (
+                  <div className="space-y-5 mb-8">
+                    {(block.items as { type: string; text: string; prices: string[] }[]).map((sub) => (
+                      <div key={sub.text}>
+                        <p className="text-sm font-medium text-foreground mb-1.5">{sub.text}</p>
+                        <div className="flex flex-wrap gap-x-8 gap-y-1">
+                          {sub.prices.map((p) => (
+                            <p key={p} className="text-sm text-warm-gray">{p}</p>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Price rows */}
+                {block.prices.length > 0 && (
+                  <div className="grid sm:grid-cols-2 gap-4 mb-4">
+                    {block.prices.map((p) => (
+                      <div key={p.label} className="flex items-center justify-between bg-warm-white border border-border/30 px-5 py-3.5">
+                        <span className="text-sm text-warm-gray">{p.label}</span>
+                        <span className="text-base font-bold text-foreground">{p.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {block.note && (
+                  <p className="text-xs text-warm-gray/70 mt-2">* {block.note}</p>
+                )}
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+
+        <FadeIn className="mt-12 text-center">
+          <p className="text-warm-gray text-sm">
+            Для участков площадью более 50 соток — цена договорная.
+            <br />
+            <a href="tel:+79822641658" className="text-terracotta hover:text-terracotta-light font-medium underline underline-offset-2 transition-colors">
+              Свяжитесь с нами для расчёта
+            </a>
+          </p>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  CONTACTS                                                           */
 /* ------------------------------------------------------------------ */
 
@@ -953,6 +1236,7 @@ export default function Home() {
         <Hero />
         <About />
         <Services />
+        <Pricing />
         <Portfolio />
         <Stats />
         <CtaBand />
