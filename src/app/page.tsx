@@ -610,7 +610,6 @@ function About() {
                   loading="lazy"
                 />
               </div>
-              <FallingLeaves />
             </div>
             <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-forest/10 -z-10" />
           </FadeIn>
