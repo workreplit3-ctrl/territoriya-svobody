@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "query": "modern outdoor terrace landscape design with furniture",
+  "count": 5,
+  "ranked": true,
+  "captioned_count": 4,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e738fe3ea5dd.jpg",
+      "caption": "A modern rooftop terrace with wooden furniture, blue cushions, and lush greenery. suitable for background image",
+      "source": "Gardeningetc",
+      "original_width": "2401px",
+      "original_height": "1801px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b4dccf40c8c9.jpg",
+      "caption": "",
+      "source": "Livingetc",
+      "original_width": "3200px",
+      "original_height": "1800px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6c5c25c00fac.jpg",
+      "caption": "A modern outdoor patio with a dining table, fire pit, and lush garden, suitable for background image.",
+      "source": "Contemporist",
+      "original_width": "1920px",
+      "original_height": "1283px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9c4f055c049c.png",
+      "caption": "A modern wooden garden room with a deck, outdoor furniture, and lush greenery. suitable for background image",
+      "source": "Livingetc",
+      "original_width": "2000px",
+      "original_height": "1428px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c5b3000c21ce.jpg",
+      "caption": "A collage of four modern terrace designs with the text: 67 COOLEST MODERN TERRACE DESIGN IDEAS.",
+      "source": "DigsDigs",
+      "original_width": "735px",
+      "original_height": "1102px"
+    }
+  ]
+}

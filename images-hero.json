@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "query": "beautiful modern landscape design garden with stone pathway and lush green plants",
+  "count": 5,
+  "ranked": true,
+  "captioned_count": 5,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/81138df5e3bf.jpg",
+      "caption": "A brick path leads through a vibrant garden with colorful flowers and a green gate. suitable for background image",
+      "source": "Backyard Boss",
+      "original_width": "2500px",
+      "original_height": "1900px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/52977949b810.jpg",
+      "caption": "A beautifully landscaped garden patio with a stone fireplace, curved pathway, and lush greenery at dusk. suitable for background image",
+      "source": "Pinterest",
+      "original_width": "736px",
+      "original_height": "1232px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b98d77bb3426.jpg",
+      "caption": "A lush garden with a stone path, vibrant flowers, and tall trees. suitable for background image",
+      "source": "Veranda",
+      "original_width": "1120px",
+      "original_height": "1119px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b0e1aa1d3da7.jpg",
+      "caption": "A collage of three modern landscape design photos featuring various plants, a house, and a fence.",
+      "source": "Yahoo",
+      "original_width": "1200px",
+      "original_height": "675px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3f913768f76d.jpg",
+      "caption": "A lush garden path leads to a large circular mirror, surrounded by dense greenery and modern art. suitable for background image",
+      "source": "Gardeningetc",
+      "original_width": "2000px",
+      "original_height": "2400px"
+    }
+  ]
+}

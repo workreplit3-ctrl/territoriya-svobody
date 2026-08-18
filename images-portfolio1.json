@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "query": "luxury garden design with water feature and lighting at dusk",
+  "count": 5,
+  "ranked": true,
+  "captioned_count": 3,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/0a5124839bbc.jpg",
+      "caption": "A luxurious garden with a gazebo, fountain, and manicured landscaping at dusk. suitable for background image",
+      "source": "Pinterest",
+      "original_width": "736px",
+      "original_height": "1104px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/eda517f3cf4a.jpg",
+      "caption": "A modern house exterior at dusk features a glowing green water fountain in the foreground. suitable for background image",
+      "source": "Williams Luxury Homes",
+      "original_width": "1200px",
+      "original_height": "863px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/4b5c3cf5758c.jpg",
+      "caption": "",
+      "source": "Big Rock Landscaping",
+      "original_width": "1400px",
+      "original_height": "944px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7b97954b8bd8.jpg",
+      "caption": "A luxurious outdoor swimming pool at night, illuminated by lights and fire features, surrounded by stone walls and lush greenery. suitable for background image",
+      "source": "Revelation AV & Automation",
+      "original_width": "1440px",
+      "original_height": "663px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/aea62901bf44.jpg",
+      "caption": "",
+      "source": "Fancy House Design",
+      "original_width": "1024px",
+      "original_height": "1024px"
+    }
+  ]
+}

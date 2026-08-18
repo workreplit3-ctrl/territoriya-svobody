@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "query": "minimalist zen garden design with rocks and moss",
+  "count": 5,
+  "ranked": true,
+  "captioned_count": 2,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/58e246c64af3.jpg",
+      "caption": "",
+      "source": "Southwest Boulder & Stone",
+      "original_width": "1224px",
+      "original_height": "1530px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/47dcfef71b5a.jpg",
+      "caption": "A serene Japanese garden with moss, pruned shrubs, rocks, and a stone lantern. suitable for background image",
+      "source": "Homes and Gardens",
+      "original_width": "900px",
+      "original_height": "900px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c646978827ed.jpg",
+      "caption": "",
+      "source": "Backyard Boss",
+      "original_width": "2500px",
+      "original_height": "1900px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/da9671253665.jpg",
+      "caption": "A vibrant garden with a stone path, colorful flowers, and various green shrubs. suitable for background image",
+      "source": "Backyard Boss",
+      "original_width": "2500px",
+      "original_height": "1900px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/afd75a54d6bb.jpg",
+      "caption": "",
+      "source": "YouTube",
+      "original_width": "1280px",
+      "original_height": "720px"
+    }
+  ]
+}

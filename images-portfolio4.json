@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "query": "elegant driveway landscape design with trees and hedges",
+  "count": 5,
+  "ranked": true,
+  "captioned_count": 5,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/78163179dab5.png",
+      "caption": "A gravel driveway lined with blooming trees and trimmed hedges, flanked by stone pillars. suitable for background image",
+      "source": "Evergreen Trees Direct",
+      "original_width": "2200px",
+      "original_height": "1500px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f450632e675c.jpg",
+      "caption": "A paved driveway lined with manicured hedges and large planters leads through a lush, green garden. suitable for background image",
+      "source": "Pinterest",
+      "original_width": "736px",
+      "original_height": "1104px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/4ac96ac73521.jpg",
+      "caption": "A garden with white hydrangeas, green hedges, a white arbor, and a blue house in the background. Watermark: © gardeneroasis.com. suitable for background image",
+      "source": "Gardener's Oasis",
+      "original_width": "1440px",
+      "original_height": "1766px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ecef48bae491.webp",
+      "caption": "A vibrant, lush garden with a winding stone path and colorful flower beds. suitable for background image",
+      "source": "Deep Green Permaculture",
+      "original_width": "1024px",
+      "original_height": "1024px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/769322b4aa85.jpg",
+      "caption": "A beautiful house with a paved driveway and lush greenery. suitable for background image",
+      "source": "ShrubHub",
+      "original_width": "1200px",
+      "original_height": "670px"
+    }
+  ]
+}
