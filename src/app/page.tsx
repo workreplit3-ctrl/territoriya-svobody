@@ -894,49 +894,6 @@ function Contacts() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.2}>
-            <form className="bg-warm-white p-8 md:p-10 border border-border/60" onSubmit={(e) => e.preventDefault()}>
-              <div className="space-y-6">
-                <div>
-                  <label className="block text-xs tracking-[0.1em] uppercase text-warm-gray mb-2">
-                    Имя
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Как к вам обращаться"
-                    className="w-full bg-transparent border-b-2 border-charcoal/20 focus:border-terracotta outline-none py-3 text-foreground placeholder:text-warm-gray/40 transition-colors duration-300"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs tracking-[0.1em] uppercase text-warm-gray mb-2">
-                    Телефон
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="+7 (___) ___-__-__"
-                    className="w-full bg-transparent border-b-2 border-charcoal/20 focus:border-terracotta outline-none py-3 text-foreground placeholder:text-warm-gray/40 transition-colors duration-300"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs tracking-[0.1em] uppercase text-warm-gray mb-2">
-                    Сообщение
-                  </label>
-                  <textarea
-                    rows={4}
-                    placeholder="Расскажите о вашем проекте"
-                    className="w-full bg-transparent border-b-2 border-charcoal/20 focus:border-terracotta outline-none py-3 text-foreground placeholder:text-warm-gray/40 transition-colors duration-300 resize-none"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-charcoal hover:bg-charcoal-light text-warm-white py-4 text-sm tracking-[0.12em] uppercase transition-all duration-300 flex items-center justify-center gap-2 group"
-                >
-                  Отправить заявку
-                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </button>
-              </div>
-            </form>
-          </FadeIn>
         </div>
       </div>
     </section>
