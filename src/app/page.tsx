@@ -442,10 +442,7 @@ function Navigation() {
       />
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-20">
         <a href="#" className="flex items-center gap-2 text-warm-white">
-          <Leaf className="w-6 h-6 text-terracotta" strokeWidth={1.5} />
-          <span className="text-lg font-semibold tracking-[0.15em] uppercase">
-            Территория Свободы
-          </span>
+          <img src="/logo.png" alt="Территория Свободы" className="h-9 w-auto" />
         </a>
 
         <ul className="hidden md:flex items-center gap-8">
@@ -1149,12 +1146,9 @@ function Footer() {
     <footer className="bg-charcoal py-16 md:py-20">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
-          <div className="flex items-center gap-2 text-warm-white">
-            <Leaf className="w-5 h-5 text-terracotta" strokeWidth={1.5} />
-            <span className="text-base font-semibold tracking-[0.15em] uppercase">
-              Территория Свободы
-            </span>
-          </div>
+          <a href="#" className="flex items-center">
+            <img src="/logo.png" alt="Территория Свободы" className="h-8 w-auto brightness-0 invert opacity-60" />
+          </a>
           <div className="flex flex-wrap gap-8">
             {NAV_LINKS.map((link) => (
               <a

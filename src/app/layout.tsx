@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description:
     "Создаём уникальные ландшафтные проекты для частных садов и общественных пространств. Природный дизайн, в котором каждая деталь имеет значение.",
   icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
+    icon: "/logo.png",
   },
   openGraph: {
     title: "Территория Свободы — Студия ландшафтного дизайна",
