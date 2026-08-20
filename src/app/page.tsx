@@ -73,8 +73,8 @@ const KENBURNS_CLASSES = [
 ];
 
 const PORTFOLIO = [
-  { title: 'Сад у озера', category: 'Частный сад', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/81138df5e3bf.jpg' },
-  { title: 'Городской парк', category: 'Общественное пространство', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/0a5124839bbc.jpg' },
+  { title: 'Сад у озера', category: 'Частный сад', img: '/portfolio-sad-ozero.jpg' },
+  { title: 'Городской парк', category: 'Общественное пространство', img: '/portfolio-gorodskoy-park.jpg' },
   { title: 'Зен-сад', category: 'Частный сад', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/58e246c64af3.jpg' },
   { title: 'Терраса с видом', category: 'Частный сад', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e738fe3ea5dd.jpg' },
   { title: 'Парадный вход', category: 'Общественное пространство', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6c5c25c00fac.jpg' },
@@ -594,11 +594,19 @@ function About() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           <FadeIn direction="left" className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden">
-              <div className="absolute inset-0">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative aspect-[4/5] overflow-hidden">
                 <img
                   src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b98d77bb3426.jpg"
                   alt="Ландшафтный проект"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <img
+                  src="/about-chayka.jpg"
+                  alt="Природа"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
@@ -719,17 +727,12 @@ function Portfolio() {
               }`}
             >
               <div className={`relative ${i === 0 ? 'aspect-[16/10] sm:aspect-auto sm:h-full' : 'aspect-[4/3]'} overflow-hidden`}>
-                <div
-                  className={`absolute inset-[-8%] ${KENBURNS_CLASSES[i]} wind-sway`}
-                  style={{ animationDelay: `${i * 2}s` }}
-                >
-                  <img
-                    src={p.img}
-                    alt={p.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                />
                 <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/50 transition-all duration-500 flex flex-col justify-end p-6 md:p-8">
                   <div className="translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                     <p className="text-terracotta-light text-xs tracking-[0.15em] uppercase mb-2">
@@ -766,7 +769,7 @@ function CtaBand() {
         style={{ y: bgY }}
       >
         <div
-          className="absolute inset-0 bg-cover bg-center animate-kenburns-right wind-sway"
+          className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `url(${PORTFOLIO[1].img})`,
           }}
@@ -817,7 +820,7 @@ const TARIFFS = [
       'Выезд специалиста на участок (до 100 км или онлайн)',
       'Подбор концепции: органические или геометрические формы',
       'Подбор стилистических аналогов',
-      'Эскиз планировочного решения (1–3 варианта)',
+      'Эскиз планировочного решения',
       'Финальный эскиз с учётом пожеланий клиента',
       '3D-визуализация основных видовых точек',
       'Финализация эскиза после 3D',
@@ -841,7 +844,7 @@ const TARIFFS = [
       'Выезд специалиста на участок (до 100 км или онлайн)',
       'Подбор стилистических аналогов',
       '2 концепции: органические + геометрические формы',
-      'Эскизы планировочного решения по каждой концепции (1–3 вар.)',
+      'Эскизы планировочного решения по каждой концепции',
       'Выбор по 1 варианту для каждой стилистики',
       '3D-визуализация для каждой стилистики',
       'Финальный эскиз по выбранной стилистике',
@@ -1074,7 +1077,7 @@ function Pricing() {
           <p className="text-warm-gray text-sm">
             Для участков площадью более 50 соток — цена договорная.
             <br />
-            <a href="tel:+79822641658" className="text-terracotta hover:text-terracotta-light font-medium underline underline-offset-2 transition-colors">
+            <a href="#контакты" className="text-terracotta hover:text-terracotta-light font-medium underline underline-offset-2 transition-colors">
               Свяжитесь с нами для расчёта
             </a>
           </p>
