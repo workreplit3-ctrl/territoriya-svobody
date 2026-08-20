@@ -441,8 +441,8 @@ function Navigation() {
         style={{ opacity: bgOpacity }}
       />
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-20">
-        <a href="#" className="flex items-center gap-2 text-warm-white">
-          <img src="/logo.png" alt="Территория Свободы" className="h-9 w-auto" />
+        <a href="#" className="flex items-center">
+          <img src="/logo.png" alt="Территория Свободы" className="h-12 md:h-14 w-auto rounded-md" />
         </a>
 
         <ul className="hidden md:flex items-center gap-8">
@@ -1093,20 +1093,24 @@ function Contacts() {
     <section id="контакты" className="bg-cream py-24 md:py-36">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20">
-          <FadeIn>
-            <p className="text-terracotta text-sm tracking-[0.2em] uppercase mb-4">
-              Свяжитесь с нами
-            </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8">
-              Давайте создадим
-              <br />
-              что-то прекрасное
-            </h2>
-            <p className="text-warm-gray text-base md:text-lg leading-relaxed mb-10">
-              Мы всегда рады обсудить ваш будущий проект. Оставьте заявку или
-              свяжитесь с нами любым удобным способом — первое знакомство и консультация
-              бесплатно.
-            </p>
+          <div>
+            <FadeIn delay={0.05} className="mb-8">
+              <img src="/logo.png" alt="Территория Свободы" className="h-16 md:h-20 w-auto" />
+            </FadeIn>
+            <FadeIn>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8">
+                Давайте создадим
+                <br />
+                что-то прекрасное
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-warm-gray text-base md:text-lg leading-relaxed mb-10">
+                Мы всегда рады обсудить ваш будущий проект. Оставьте заявку или
+                свяжитесь с нами любым удобным способом — первое знакомство и консультация
+                бесплатно.
+              </p>
+            </FadeIn>
 
             <div className="space-y-6">
               <a href="tel:+79822641658" className="flex items-center gap-4 group">
@@ -1129,7 +1133,7 @@ function Contacts() {
                 </div>
               </a>
             </div>
-          </FadeIn>
+          </div>
 
         </div>
       </div>
@@ -1147,7 +1151,7 @@ function Footer() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
           <a href="#" className="flex items-center">
-            <img src="/logo.png" alt="Территория Свободы" className="h-8 w-auto brightness-0 invert opacity-60" />
+            <img src="/logo.png" alt="Территория Свободы" className="h-10 md:h-12 w-auto rounded-md" />
           </a>
           <div className="flex flex-wrap gap-8">
             {NAV_LINKS.map((link) => (
