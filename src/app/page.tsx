@@ -810,7 +810,7 @@ const TARIFFS = [
   {
     name: 'Standart',
     subtitle: 'Концептуальный проект развития сада на 10–15 лет',
-    area: 'до 20 соток',
+    area: 'Участок до 20 соток',
     price: '40 000 – 45 000 ₽',
     priceAlt: '52 000 – 58 500 ₽',
     note: 'Пакет Standart (включая доп. услуги по тарифу)',
@@ -834,7 +834,7 @@ const TARIFFS = [
   {
     name: 'Standart +',
     subtitle: 'Проект в двух стилистиках: органические и геометрические',
-    area: 'до 20 соток',
+    area: 'Участок до 20 соток',
     price: '55 000 – 65 000 ₽',
     priceAlt: null,
     note: null,
@@ -874,7 +874,7 @@ const TARIFFS = [
   {
     name: 'Дендропроект',
     subtitle: 'Декоративные композиции из деревьев и кустарников',
-    area: 'весь участок',
+    area: 'Весь участок',
     price: '35 000 – 50 000 ₽',
     priceAlt: null,
     note: null,
@@ -959,7 +959,7 @@ function Pricing() {
                 {t.name}
               </p>
               {t.area && (
-                <p className="text-[11px] text-warm-gray mb-4">Участок {t.area}</p>
+                <p className="text-[11px] text-warm-gray mb-4">{t.area}</p>
               )}
               {!t.area && <div className="mb-4" />}
               <p className="text-warm-gray text-sm leading-relaxed mb-5 min-h-[2.5rem]">
