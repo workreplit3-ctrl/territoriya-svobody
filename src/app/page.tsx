@@ -440,10 +440,10 @@ function Navigation() {
         className="absolute inset-0 bg-charcoal/90 border-b border-white/5"
         style={{ opacity: bgOpacity }}
       />
-      <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-20">
+      <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-24 md:h-28">
         <a href="#" className="flex items-center gap-3">
           <img src="/logo.png" alt="Территория Свободы" className="h-12 md:h-14 w-auto rounded-md" />
-          <span className="hidden sm:inline text-warm-white text-base md:text-lg font-light tracking-[0.12em] uppercase leading-none">Территория Свободы</span>
+          <span className="hidden sm:inline text-warm-white text-2xl md:text-4xl font-semibold tracking-[0.08em] uppercase leading-none">Территория Свободы</span>
         </a>
 
         <ul className="hidden md:flex items-center gap-8">
