@@ -444,7 +444,7 @@ function Navigation() {
         <a href="#" className="flex items-center gap-2 text-warm-white">
           <Leaf className="w-6 h-6 text-terracotta" strokeWidth={1.5} />
           <span className="text-lg font-semibold tracking-[0.15em] uppercase">
-            Flora
+            Территория Свободы
           </span>
         </a>
 
@@ -1149,7 +1149,7 @@ function Footer() {
           <div className="flex items-center gap-2 text-warm-white">
             <Leaf className="w-5 h-5 text-terracotta" strokeWidth={1.5} />
             <span className="text-base font-semibold tracking-[0.15em] uppercase">
-              Flora
+              Территория Свободы
             </span>
           </div>
           <div className="flex flex-wrap gap-8">
@@ -1167,7 +1167,7 @@ function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-warm-white/30">
-            &copy; {new Date().getFullYear()} Flora. Все права защищены.
+            &copy; {new Date().getFullYear()} Территория Свободы. Все права защищены.
           </p>
           <p className="text-xs text-warm-white/30">
             Ландшафтный дизайн и архитектура
