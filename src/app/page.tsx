@@ -576,7 +576,7 @@ function About() {
             <div className="grid grid-cols-2 gap-4">
               <div className="relative aspect-[4/5] overflow-hidden">
                 <img
-                  src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b98d77bb3426.jpg"
+                  src="/about-photo.jpg"
                   alt="Ландшафтный проект"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -584,7 +584,7 @@ function About() {
               </div>
               <div className="relative aspect-[4/5] overflow-hidden">
                 <img
-                  src="/about-chayka.jpg"
+                  src="/about-photo.jpg"
                   alt="Природа"
                   className="w-full h-full object-cover"
                   loading="lazy"
