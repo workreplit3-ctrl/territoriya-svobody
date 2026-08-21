@@ -1067,14 +1067,14 @@ function Contacts() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20">
           <div>
-            <FadeIn className="flex items-center gap-6 mb-8">
-              <img src="/logo.png" alt="Территория Свободы" className="h-16 md:h-20 w-auto object-left" />
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+            <FadeIn>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8">
                 Свяжитесь с нами
               </h2>
             </FadeIn>
-            <FadeIn delay={0.1}>
-              <p className="text-warm-gray text-base md:text-lg leading-relaxed mb-10">
+            <FadeIn delay={0.1} className="flex items-center gap-5 mb-10">
+              <img src="/logo.png" alt="Территория Свободы" className="h-12 md:h-14 w-auto object-left flex-shrink-0" />
+              <p className="text-warm-gray text-base md:text-lg leading-relaxed">
                 Мы готовы обсудить ваш будущий проект. Свяжитесь с нами любым удобным способом, консультация бесплатная.
               </p>
             </FadeIn>
