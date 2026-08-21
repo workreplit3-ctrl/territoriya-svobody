@@ -443,7 +443,7 @@ function Navigation() {
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-24 md:h-28">
         <a href="#" className="flex items-center">
           <div className="md:grid md:grid-cols-[auto_1fr] md:grid-rows-2 items-center gap-x-3 flex items-center">
-            <img src="/logo.png" alt="Территория Свободы" className="h-12 md:h-14 w-auto rounded-md md:row-span-2 md:self-center" />
+            <img src="/logo.png" alt="Территория Свободы" className="h-12 md:h-14 w-auto md:row-span-2 md:self-center" />
             <span className="hidden sm:inline text-warm-white text-2xl md:text-4xl font-semibold tracking-[0.08em] uppercase leading-none">Территория Свободы</span>
             <span className="hidden md:inline text-sm tracking-[0.08em] uppercase text-warm-white/70">Студия ландшафтного дизайна</span>
           </div>
@@ -1133,7 +1133,7 @@ function Footer() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
           <a href="#" className="flex items-center">
-            <img src="/logo.png" alt="Территория Свободы" className="h-10 md:h-12 w-auto rounded-md" />
+            <img src="/logo.png" alt="Территория Свободы" className="h-10 md:h-12 w-auto" />
           </a>
           <div className="flex flex-wrap gap-8">
             {NAV_LINKS.map((link) => (
