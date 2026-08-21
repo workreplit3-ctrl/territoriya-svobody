@@ -441,9 +441,14 @@ function Navigation() {
         style={{ opacity: bgOpacity }}
       />
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-24 md:h-28">
-        <a href="#" className="flex items-center gap-3">
-          <img src="/logo.png" alt="Территория Свободы" className="h-12 md:h-14 w-auto rounded-md" />
-          <span className="hidden sm:inline text-warm-white text-2xl md:text-4xl font-semibold tracking-[0.08em] uppercase leading-none">Территория Свободы</span>
+        <a href="#" className="flex items-center">
+          <div className="flex flex-col justify-center">
+            <div className="flex items-center gap-3">
+              <img src="/logo.png" alt="Территория Свободы" className="h-12 md:h-14 w-auto rounded-md" />
+              <span className="hidden sm:inline text-warm-white text-2xl md:text-4xl font-semibold tracking-[0.08em] uppercase leading-none">Территория Свободы</span>
+            </div>
+            <span className="hidden md:inline text-sm tracking-[0.08em] uppercase text-warm-white/70 mt-0.5 pl-[4.75rem] md:pl-[5.25rem]">Студия ландшафтного дизайна</span>
+          </div>
         </a>
 
         <ul className="hidden md:flex items-center gap-8">
@@ -526,28 +531,6 @@ function Hero() {
         className="relative z-10 flex flex-col justify-end h-full max-w-[1400px] mx-auto px-5 sm:px-6 md:px-10 pb-28 md:pb-32 [padding-bottom:env(safe-area-inset-bottom,7rem)]"
         style={{ opacity: heroOpacity, y: textY }}
       >
-        <motion.p
-          className="text-terracotta-light text-sm md:text-base tracking-[0.2em] uppercase mb-4"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          Студия ландшафтного дизайна
-        </motion.p>
-
-        <motion.h1
-          className="text-warm-white text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight max-w-4xl"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-        >
-          ИСКУССТВО
-          <br />
-          <span className="text-terracotta-light">СОЗДАВАТЬ</span>
-          <br />
-          ЛАНДШАФТ
-        </motion.h1>
-
         <motion.div
           className="mt-8 md:mt-12"
           initial={{ opacity: 0, y: 30 }}
