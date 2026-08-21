@@ -442,12 +442,10 @@ function Navigation() {
       />
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-24 md:h-28">
         <a href="#" className="flex items-center">
-          <div className="flex flex-col justify-center">
-            <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="Территория Свободы" className="h-12 md:h-14 w-auto rounded-md" />
-              <span className="hidden sm:inline text-warm-white text-2xl md:text-4xl font-semibold tracking-[0.08em] uppercase leading-none">Территория Свободы</span>
-            </div>
-            <span className="hidden md:inline text-sm tracking-[0.08em] uppercase text-warm-white/70 mt-0.5 pl-[4.75rem] md:pl-[5.25rem]">Студия ландшафтного дизайна</span>
+          <div className="md:grid md:grid-cols-[auto_1fr] md:grid-rows-2 items-center gap-x-3 flex items-center">
+            <img src="/logo.png" alt="Территория Свободы" className="h-12 md:h-14 w-auto rounded-md md:row-span-2 md:self-center" />
+            <span className="hidden sm:inline text-warm-white text-2xl md:text-4xl font-semibold tracking-[0.08em] uppercase leading-none">Территория Свободы</span>
+            <span className="hidden md:inline text-sm tracking-[0.08em] uppercase text-warm-white/70">Студия ландшафтного дизайна</span>
           </div>
         </a>
 
