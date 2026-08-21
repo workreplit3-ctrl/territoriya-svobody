@@ -636,10 +636,11 @@ function Services() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <FadeIn className="mb-16 md:mb-20">
           <p className="text-terracotta text-sm tracking-[0.2em] uppercase mb-4">
-            Что мы делаем
+            Наши услуги
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-            Полный цикл создания<br className="hidden md:block" /> ландшафта
+            Мы предлагаем полный комплекс услуг от проектирования до ухода
+            ландшафта
           </h2>
         </FadeIn>
 
