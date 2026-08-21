@@ -1067,8 +1067,8 @@ function Contacts() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20">
           <div>
-            <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_auto] items-center gap-x-4 mb-10">
-              <FadeIn className="row-span-2 self-start">
+            <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_auto_auto_auto] items-center gap-x-4 gap-y-6">
+              <FadeIn className="row-span-4 self-start">
                 <img src="/logo.png" alt="Территория Свободы" className="h-14 md:h-16 w-auto object-left" />
               </FadeIn>
               <FadeIn>
@@ -1081,28 +1081,28 @@ function Contacts() {
                   Мы готовы обсудить ваш будущий проект. Свяжитесь с нами любым удобным способом, консультация бесплатная.
                 </p>
               </FadeIn>
-            </div>
-
-            <div className="space-y-6">
-              <a href="tel:+79822641658" className="grid grid-cols-[3rem_1fr] items-center gap-4 group">
-                <div className="w-12 h-12 flex items-center justify-center border border-border group-hover:border-terracotta group-hover:bg-terracotta/5 transition-all duration-300">
-                  <Phone className="w-5 h-5 text-terracotta" strokeWidth={1.2} />
-                </div>
-                <div>
-                  <p className="text-xs text-warm-gray tracking-wide uppercase">Телефон</p>
-                  <p className="text-foreground font-medium">+7 982 264-16-58</p>
-                </div>
-              </a>
-
-              <a href="mailto:elena.sushnyak@mail.ru" className="grid grid-cols-[3rem_1fr] items-center gap-4 group">
-                <div className="w-12 h-12 flex items-center justify-center border border-border group-hover:border-terracotta group-hover:bg-terracotta/5 transition-all duration-300">
-                  <Mail className="w-5 h-5 text-terracotta" strokeWidth={1.2} />
-                </div>
-                <div>
-                  <p className="text-xs text-warm-gray tracking-wide uppercase">Email</p>
-                  <p className="text-foreground font-medium">elena.sushnyak@mail.ru</p>
-                </div>
-              </a>
+              <FadeIn delay={0.2}>
+                <a href="tel:+79822641658" className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 flex items-center justify-center border border-border group-hover:border-terracotta group-hover:bg-terracotta/5 transition-all duration-300">
+                    <Phone className="w-5 h-5 text-terracotta" strokeWidth={1.2} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-warm-gray tracking-wide uppercase">Телефон</p>
+                    <p className="text-foreground font-medium">+7 982 264-16-58</p>
+                  </div>
+                </a>
+              </FadeIn>
+              <FadeIn delay={0.3}>
+                <a href="mailto:elena.sushnyak@mail.ru" className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 flex items-center justify-center border border-border group-hover:border-terracotta group-hover:bg-terracotta/5 transition-all duration-300">
+                    <Mail className="w-5 h-5 text-terracotta" strokeWidth={1.2} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-warm-gray tracking-wide uppercase">Email</p>
+                    <p className="text-foreground font-medium">elena.sushnyak@mail.ru</p>
+                  </div>
+                </a>
+              </FadeIn>
             </div>
           </div>
 
