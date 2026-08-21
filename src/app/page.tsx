@@ -573,8 +573,7 @@ function About() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           <FadeIn direction="left" className="relative">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative aspect-[4/5] overflow-hidden">
                 <img
                   src="/about-photo.jpg"
                   alt="Ландшафтный проект"
@@ -582,15 +581,6 @@ function About() {
                   loading="lazy"
                 />
               </div>
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <img
-                  src="/about-photo.jpg"
-                  alt="Природа"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-            </div>
             <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-forest/10 -z-10" />
           </FadeIn>
 
