@@ -1067,7 +1067,7 @@ function Contacts() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20">
           <div>
-            <div className="grid grid-cols-[3rem_1fr] grid-rows-[auto_auto] items-center gap-x-4 mb-10">
+            <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_auto] items-center gap-x-4 mb-10">
               <FadeIn className="row-span-2 self-start">
                 <img src="/logo.png" alt="Территория Свободы" className="h-14 md:h-16 w-auto object-left" />
               </FadeIn>
