@@ -1072,16 +1072,12 @@ function Contacts() {
             </FadeIn>
             <FadeIn>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8">
-                Давайте создадим
-                <br />
-                что-то прекрасное
+                Свяжитесь с нами
               </h2>
             </FadeIn>
             <FadeIn delay={0.1}>
               <p className="text-warm-gray text-base md:text-lg leading-relaxed mb-10">
-                Мы всегда рады обсудить ваш будущий проект. Оставьте заявку или
-                свяжитесь с нами любым удобным способом — первое знакомство и консультация
-                бесплатно.
+                Мы готовы обсудить ваш будущий проект. Свяжитесь с нами любым удобным способом, консультация бесплатная.
               </p>
             </FadeIn>
 
