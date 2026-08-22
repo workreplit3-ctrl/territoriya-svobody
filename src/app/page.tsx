@@ -529,14 +529,18 @@ function Hero() {
         className="relative z-10 flex flex-col justify-end h-full max-w-[1400px] mx-auto px-5 sm:px-6 md:px-10 pb-28 md:pb-32 [padding-bottom:env(safe-area-inset-bottom,7rem)]"
         style={{ opacity: heroOpacity, y: textY }}
       >
-        <motion.p
-          className="text-terracotta-light text-sm md:text-base tracking-[0.2em] uppercase mb-4"
-          initial={{ opacity: 0, y: 30 }}
+        <motion.h1
+          className="text-warm-white text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight max-w-4xl"
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          Искусство создавать ландшафт
-        </motion.p>
+          ИСКУССТВО
+          <br />
+          <span className="text-terracotta-light">СОЗДАВАТЬ</span>
+          <br />
+          ЛАНДШАФТ
+        </motion.h1>
 
         <motion.div
           className="mt-8 md:mt-12"
