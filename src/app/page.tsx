@@ -529,6 +529,15 @@ function Hero() {
         className="relative z-10 flex flex-col justify-end h-full max-w-[1400px] mx-auto px-5 sm:px-6 md:px-10 pb-28 md:pb-32 [padding-bottom:env(safe-area-inset-bottom,7rem)]"
         style={{ opacity: heroOpacity, y: textY }}
       >
+        <motion.p
+          className="text-terracotta-light text-sm md:text-base tracking-[0.2em] uppercase mb-4"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          Искусство создавать ландшафт
+        </motion.p>
+
         <motion.div
           className="mt-8 md:mt-12"
           initial={{ opacity: 0, y: 30 }}
