@@ -768,7 +768,7 @@ function CtaBand() {
         </FadeIn>
         <FadeIn delay={0.2}>
           <p className="text-warm-white/70 text-base md:text-lg max-w-xl mx-auto mb-10">
-            Расскажите нам о вашей мечте — и мы превратим её в реальный проект,
+            Расскажите нам о вашей мечте, и мы превратим её в реальный проект,
             который будет радовать вас долгие годы.
           </p>
         </FadeIn>
