@@ -73,7 +73,7 @@ const KENBURNS_CLASSES = [
 ];
 
 const PORTFOLIO = [
-  { title: 'Сад у озера', category: 'Частный сад', img: '/portfolio-sad-ozero.jpg' },
+  { title: 'Сад у озера', category: 'Частный сад', img: '/portfolio-sad-ozero.png' },
   { title: 'Городской парк', category: 'Общественное пространство', img: '/portfolio-gorodskoy-park.jpg' },
   { title: 'Зен-сад', category: 'Частный сад', img: '/portfolio-zen-sad.jpg' },
   { title: 'Терраса с видом', category: 'Частный сад', img: '/portfolio-terrasa-s-vidom.jpg' },
