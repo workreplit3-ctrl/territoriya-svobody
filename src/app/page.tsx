@@ -78,7 +78,7 @@ const PORTFOLIO = [
   { title: 'Зен-сад', category: 'Частный сад', img: '/portfolio-zen-sad.jpg' },
   { title: 'Терраса с видом', category: 'Частный сад', img: '/portfolio-terrasa-s-vidom.jpg' },
   { title: 'Парадный вход', category: 'Общественное пространство', img: '/portfolio-paradnyy-vhod.jpg' },
-  { title: 'Вечерний сад', category: 'Частный сад', img: 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/eda517f3cf4a.jpg' },
+  { title: 'Вечерний сад', category: 'Частный сад', img: '/portfolio-vecherniy-sad.png' },
 ];
 
 const HERO_IMG = 'https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/52977949b810.jpg';
