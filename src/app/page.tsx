@@ -442,10 +442,10 @@ function Navigation() {
       />
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-24 md:h-28">
         <a href="#" className="flex items-center">
-          <div className="md:grid md:grid-cols-[auto_1fr] md:grid-rows-2 items-center gap-x-3 flex items-center">
-            <img src="/logo.png" alt="Территория Свободы" className="h-12 md:h-14 w-auto object-left md:row-span-2 md:self-center" />
+          <div className="md:grid md:grid-cols-[auto_1fr] md:grid-rows-[auto_auto] items-center gap-x-3 flex items-center">
+            <img src="/logo.png" alt="Территория Свободы" className="h-7 md:h-9 w-auto object-left md:row-span-1 md:self-center" />
             <span className="hidden sm:inline text-warm-white text-2xl md:text-4xl font-semibold tracking-[0.08em] uppercase leading-none">Территория Свободы</span>
-            <span className="hidden md:inline text-sm tracking-[0.08em] uppercase text-warm-white/70">Студия ландшафтного дизайна</span>
+            <span className="hidden md:inline text-sm tracking-[0.08em] uppercase text-warm-white/70 col-start-2">Студия ландшафтного дизайна</span>
           </div>
         </a>
 
