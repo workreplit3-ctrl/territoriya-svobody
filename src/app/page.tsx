@@ -1105,13 +1105,13 @@ function Contacts() {
                 </a>
               </FadeIn>
               <FadeIn delay={0.3}>
-                <a href="mailto:elena.sushnyak@mail.ru" className="flex items-center gap-4 group">
+                <a href="mailto:elena.archdesign@mail.ru" className="flex items-center gap-4 group">
                   <div className="w-12 h-12 flex items-center justify-center border border-border group-hover:border-terracotta group-hover:bg-terracotta/5 transition-all duration-300">
                     <Mail className="w-5 h-5 text-terracotta" strokeWidth={1.2} />
                   </div>
                   <div>
                     <p className="text-xs text-warm-gray tracking-wide uppercase">Email</p>
-                    <p className="text-foreground font-medium">elena.sushnyak@mail.ru</p>
+                    <p className="text-foreground font-medium">elena.archdesign@mail.ru</p>
                   </div>
                 </a>
               </FadeIn>
